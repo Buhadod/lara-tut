@@ -12,3 +12,19 @@ php artisan breeze:install
 npm install
 npm run dev
 php artisan migrate
+
+
+## Migrate fresh 
+php artisan migrate:fresh
+
+
+## fix 1071 key was too long issue ?
+Go to AppServiceProvider
+
+```
+use Illuminate\Support\Facades\Schema;
+public function boot()
+    {
+        Schema::defaultStringLength(191);
+    }
+```
