@@ -1,3 +1,6 @@
+## Req
+composer, node.js, wamp
+
 ## Install laravel via composer
 Ref : https://laravel.com/docs/8.x/installation#the-laravel-installer
 composer global require laravel/installer
