@@ -31,3 +31,6 @@ public function boot()
         Schema::defaultStringLength(191);
     }
 ```
+
+## install Laravel passport
+https://laravel.com/docs/8.x/passport
