@@ -160,6 +160,9 @@ Run the following commands at the end:
     php artisan passport:install
 ```
 
+## How to solve Personal access client not found. Please create one issue ?
+
+
 ## Add PassportController for api login and register
 Run this command to create empty controller, we will name it `PassportController`.
 ```
