@@ -228,11 +228,11 @@ class PassportController extends Controller
 ```
 
 Finally, add in the 'routes/api.php'  routes for these functions 
-
-Route::post("/login-api","App\Http\Controllers\API\PassportController@login");
-Route::post("/register-api","App\Http\Controllers\API\PassportController@register");
-
-and run this command, always run it whenver you add new route
+```
+    Route::post("/login-api","App\Http\Controllers\API\PassportController@login");
+    Route::post("/register-api","App\Http\Controllers\API\PassportController@register");
+```
+And run this command, always run it whenver you add new route
 ```
  php artisan route:cache
 ```
