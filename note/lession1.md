@@ -13,7 +13,7 @@ Please install the following software to start up:
 
 - Also, change the php version for envriomental variable (see here: https://docs.oracle.com/en/database/oracle/machine-learning/oml4r/1.5.1/oread/creating-and-modifying-environment-variables-on-windows.html#GUID-DD6F9982-60D5-48F6-8270-A27EC53807D0). You need to add latest php executable to the path and remove any existance one if there is one.
 
-For example,the path for php in wamp64 is this : `C:\wamp64\bin\php\php7.4.9`
+For example,the path for php in wamp64 is : `C:\wamp64\bin\php\php7.4.9`
 
 ## Install laravel via composer
 Ref : https://laravel.com/docs/8.x/installation#the-laravel-installer
@@ -24,12 +24,16 @@ To install laravel via composer run this command:
 
 ```
 
-To create new project
+## create new project
+Please create a laravel project in the `C:/wamp/www/sites` directory or any equivalent `www` directory for other apache servers.
+
 ```
     laravel new <project name>
 
     laravel new blog
 ```
+
+
 
 ## connect to a database
 - Go to localhost fropm any browser after runnning wamp
@@ -66,7 +70,7 @@ This command allow to drop and create new tables in the database using the migra
     php artisan migrate:fresh
 ```
 
-## Who tp fix 1071 key was too long issue ?
+## How to fix 1071 key was too long issue ?
 Go to App/AppServiceProvider.class
 
 ```
@@ -81,7 +85,8 @@ Go to App/AppServiceProvider.class
         }
 ```
 
-## Login shoulr ready and accessabile via
+## Login should be ready and accessabile via
+
 
 ## install Laravel passport
 https://laravel.com/docs/8.x/passport
