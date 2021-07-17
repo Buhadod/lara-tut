@@ -24,7 +24,7 @@ To install laravel via composer run this command:
 
 ```
 
-## create new project
+## Create new laravel project
 Please create a laravel project in the `C:/wamp/www/sites` directory or any equivalent `www` directory for other apache servers.
 
 ```
@@ -35,7 +35,7 @@ Please create a laravel project in the `C:/wamp/www/sites` directory or any equi
 
 
 
-## connect to a database
+## Connect to your database
 - Go to localhost fropm any browser after runnning wamp
 - Go to phpMyadmin and create new database (ex. `laravel`)
 
@@ -85,8 +85,13 @@ Go to App/AppServiceProvider.class
         }
 ```
 
-## Login should be ready and accessabile via
+## Access the system
+Your system should be ready and accessabile via 
+```
+    localhost/sites/<projectname>/public
 
+    //exmaple: localhost/sites/blog/public
+```
 
 ## install Laravel passport
 https://laravel.com/docs/8.x/passport
