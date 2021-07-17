@@ -71,7 +71,7 @@ This command allow to drop and create new tables in the database using the migra
 ```
 
 ## How to fix 1071 key was too long issue ?
-Go to App/AppServiceProvider.class
+Go to App/Providers/AppServiceProvider.php
 
 ```
     //add this in the uses
