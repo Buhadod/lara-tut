@@ -1,4 +1,6 @@
-## Req
+## Requirement
+Please install the following software to start up:
+
 - Composer : https://getcomposer.org/
 - Node.js : https://nodejs.org/en/
 - Wamp : https://www.wampserver.com/en/
@@ -6,6 +8,10 @@
 - git : https://git-scm.com/downloads
 - VScode : https://code.visualstudio.com/
 
+## PhP version (latest)
+Change the php version to latest from wamp. You can do it by click on wamp icon from status window bar in the bottom right corner and select php.
+Also, change the php version for envriomental variable (see here: https://docs.oracle.com/en/database/oracle/machine-learning/oml4r/1.5.1/oread/creating-and-modifying-environment-variables-on-windows.html#GUID-DD6F9982-60D5-48F6-8270-A27EC53807D0). You need to add latest php executable to the path and remove any existance one if there is one.
+for example,the path for php in wamp64 is this :  C:\wamp64\bin\php\php7.4.9
 
 ## Install laravel via composer
 Ref : https://laravel.com/docs/8.x/installation#the-laravel-installer
