@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post("/login-api","App\Http\Controllers\API\PassportController@login");
+Route::post("/register-api","App\Http\Controllers\API\PassportController@register");
+Route::post("/test","App\Http\Controllers\API\PassportController@test");

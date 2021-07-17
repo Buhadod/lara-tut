@@ -49,7 +49,7 @@ DB_USERNAME=root
 DB_PASSWORD=
 
 ```
-Chnage the value of `DB_DATABASE` to the name of the database you created it.
+Chnage the value of `DB_DATABASE` to the name of the database you created it. 
 
 ## Add authorization using breeze
 Ref: https://laravel.com/docs/8.x/starter-kits#laravel-breeze-installation
@@ -88,10 +88,151 @@ Go to App/Providers/AppServiceProvider.php
 ## Access the system
 Your system should be ready and accessabile via 
 ```
-    localhost/sites/<projectname>/public
+    http://localhost/sites/<projectname>/public
 
-    //exmaple: localhost/sites/blog/public
+    //exmaple: http://localhost/sites/blog/public
 ```
 
 ## install Laravel passport
-https://laravel.com/docs/8.x/passport
+REF: https://laravel.com/docs/8.x/passport
+
+Install passport in your project via composer
+```
+    composer require laravel/passport
+```
+Run these commands then to create tables for passport and install it
+
+```
+    php artisan migrate:fresh
+    php artisan passport:install
+```
+
+Go to App/Models/User.php and add the following:
+
+```
+//in the uses section
+use Laravel\Passport\HasApiTokens;
+
+class User extends Authenticatable
+{   
+    //add HasApiToken like this
+    use HasApiTokens, HasFactory, Notifiable;
+}
+```
+
+Go to App/Providers/AuthServiceProvider and add these lines:
+
+```
+    //in the uses function
+    use Laravel\Passport\Passport;
+
+    public function boot()
+    {
+        $this->registerPolicies();
+        //inside the boot functon
+        if (! $this->app->routesAreCached()) {
+            Passport::routes();
+        }
+    }
+
+```
+
+Go to config/auth.php and changes guards to the follow:
+```
+    'guards' => [
+        'web' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+
+        'api' => [
+            'driver' => 'passport',
+            'provider' => 'users',
+            'hash' => false,
+        ],
+    ],
+
+```
+
+Run the following commands at the end:
+```
+    php artisan migrate:fresh
+    php artisan passport:install
+```
+
+## Add PassportController for api login and register
+Run this command to create empty controller, we will name it `PassportController`.
+```
+    php artisan make:controller API\PassportController
+```
+The controller will be avalaible on `App\Http\Controllers\API\PassportController`. Access at and add these functions.
+
+```
+    
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use App\Models\User;
+
+class PassportController extends Controller
+{
+    public function register(Request $request)
+    {
+        $input = $request->only('name','email','password');
+        
+        $validator = Validator::make($input, [
+            'name' => 'required|max:55',
+            'email' => 'email|required|unique:users',
+            'password' => 'required|min:8'
+        ]);
+
+        if ($validator->fails()) {
+            return response(['error' => $validator->errors(), 'Validation Error'],422);
+        }
+
+        $input['password'] = bcrypt($request->password);
+
+        $user = User::create($input);
+
+        $accessToken = $user->createToken('authToken')->accessToken;
+
+        return response([ 'user' => $user, 'access_token' => $accessToken]);
+    }
+
+    public function login(Request $request)
+    {
+        $input = $request->only('email','password');
+        
+        $validator = Validator::make($input, [
+            'email' => 'email|required',
+            'password' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return response(['error' => $validator->errors(), 'Validation Error'],422);
+        }
+
+        if (!auth()->attempt($input)) {
+            return response(['message' => 'Invalid Credentials'],422);
+        }
+
+        $accessToken = auth()->user()->createToken('authToken')->accessToken;
+
+        return response(['user' => auth()->user(), 'access_token' => $accessToken]);
+
+    }
+
+    
+}
+
+```
+
+Finally, add in the 'routes/api.php'  routes for these functions 
+
+Route::post("/login-api","App\Http\Controllers\API\PassportController@login");
+Route::post("/register-api","App\Http\Controllers\API\PassportController@register");
+
+and run this command, always run it whenver you add new route
+```
+ php artisan route:cache
+```
