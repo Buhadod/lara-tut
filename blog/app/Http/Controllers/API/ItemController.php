@@ -1,67 +1,7 @@
-## php artisan commands
-php artisan make:controller
-php artisan make:migration
-php artisan make:model
+<?php
 
-## Create model
-```
-php artisan make:model Item -crmsf
-```
-- cr : resource controller
-- m  : model
-- s  : seeder 
-- f  : factory
+namespace App\Http\Controllers\API;
 
-## CRUD
-https://dev.to/kingsconsult/how-to-create-a-secure-crud-restful-api-in-laravel-8-and-7-using-laravel-passport-31fh
-
-## update migration
-
-        Schema::create('items', function (Blueprint $table) {
-            $table->id();
-            $table->string('name', 255);
-            $table->string('description', 500)->nullable();
-            $table->integer('price')->nullable();
-            $table->timestamps();
-        });
-
-## Update model
-
-    class Item extends Model
-    {
-        ....
-
-        protected $fillable = [
-            'name',
-            'description',
-            'price'
-        ];
-
-## Update Factroy
-
-Ref: https://github.com/fzaninotto/Faker
-
-    public function definition()
-    {
-        return [
-            'name' => $this->faker->name(),
-            'description' => $this->faker->text(),
-            'price' => $this->faker->numberBetween(1, 100),
-        ];
-    }
-
-Also, add seeder start to DatabaseSeeder.php
-
-    public function run()
-    {
-        \App\Models\User::factory(10)->create();
-        \App\Models\Item::factory(10)->create();  // <- Create 10 items
-    }
-
-
-## Update Controller
-
-    
 use App\Models\Item;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -177,8 +117,4 @@ class ItemController extends Controller
         $item->delete();
         return response(['message' => 'Deleted']);
     }
-    }
-
-## Add route
-
-    Route::resource('items',"App\Http\Controllers\API\ItemController");
+}
