@@ -20,7 +20,7 @@ Ref : https://laravel.com/docs/8.x/installation#the-laravel-installer
 
 To install laravel via composer run this command:
 ```
-    composer global require laravel/installer
+composer global require laravel/installer
 
 ```
 
@@ -28,9 +28,9 @@ To install laravel via composer run this command:
 Please create a laravel project in the `C:/wamp/www/sites` directory or any equivalent `www` directory for other apache servers.
 
 ```
-    laravel new <project name>
+laravel new <project name>
 
-    laravel new blog
+laravel new blog
 ```
 
 
@@ -56,41 +56,41 @@ Ref: https://laravel.com/docs/8.x/starter-kits#laravel-breeze-installation
 
 Opne command line and navigate to your project directory and run the following:
 ```
-    composer require laravel/breeze --dev
-    php artisan breeze:install
-    npm install
-    npm run dev
-    php artisan migrate:fresh
+composer require laravel/breeze --dev
+php artisan breeze:install
+npm install
+npm run dev
+php artisan migrate:fresh
 ```
 
 ## What is Migratre fresh
 
 This command allow to drop and create new tables in the database using the migration files in the directory `/datamase/migration`
 ```
-    php artisan migrate:fresh
+php artisan migrate:fresh
 ```
 
 ## How to fix 1071 key was too long issue ?
 Go to App/Providers/AppServiceProvider.php
 
 ```
-    //add this in the uses
-    use Illuminate\Support\Facades\Schema;
+//add this in the uses
+use Illuminate\Support\Facades\Schema;
 
 
-    public function boot()
-        {   
-            //add this in the boot function
-            Schema::defaultStringLength(191);
-        }
+public function boot()
+    {   
+        //add this in the boot function
+        Schema::defaultStringLength(191);
+    }
 ```
 
 ## Access the system
 Your system should be ready and accessabile via 
 ```
-    http://localhost/sites/<projectname>/public
+http://localhost/sites/<projectname>/public
 
-    //exmaple: http://localhost/sites/blog/public
+//exmaple: http://localhost/sites/blog/public
 ```
 
 ## install Laravel passport
@@ -98,13 +98,13 @@ REF: https://laravel.com/docs/8.x/passport
 
 Install passport in your project via composer
 ```
-    composer require laravel/passport
+composer require laravel/passport
 ```
 Run these commands then to create tables for passport and install it
 
 ```
-    php artisan migrate:fresh
-    php artisan passport:install
+php artisan migrate:fresh
+php artisan passport:install
 ```
 
 Go to App/Models/User.php and add the following:
@@ -123,41 +123,41 @@ class User extends Authenticatable
 Go to App/Providers/AuthServiceProvider and add these lines:
 
 ```
-    //in the uses function
-    use Laravel\Passport\Passport;
+//in the uses function
+use Laravel\Passport\Passport;
 
-    public function boot()
-    {
-        $this->registerPolicies();
-        //inside the boot functon
-        if (! $this->app->routesAreCached()) {
-            Passport::routes();
-        }
+public function boot()
+{
+    $this->registerPolicies();
+    //inside the boot functon
+    if (! $this->app->routesAreCached()) {
+        Passport::routes();
     }
+}
 
 ```
 
 Go to config/auth.php and changes guards to the follow:
 ```
-    'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],
-
-        'api' => [
-            'driver' => 'passport',
-            'provider' => 'users',
-            'hash' => false,
-        ],
+'guards' => [
+    'web' => [
+        'driver' => 'session',
+        'provider' => 'users',
     ],
+
+    'api' => [
+        'driver' => 'passport',
+        'provider' => 'users',
+        'hash' => false,
+    ],
+],
 
 ```
 
 Run the following commands at the end:
 ```
-    php artisan migrate:fresh
-    php artisan passport:install
+php artisan migrate:fresh
+   php artisan passport:install
 ```
 
 ## How to solve Personal access client not found. Please create one issue ?
@@ -232,10 +232,10 @@ class PassportController extends Controller
 
 Finally, add in the 'routes/api.php'  routes for these functions 
 ```
-    Route::post("/login-api","App\Http\Controllers\API\PassportController@login");
-    Route::post("/register-api","App\Http\Controllers\API\PassportController@register");
+Route::post("/login-api","App\Http\Controllers\API\PassportController@login");
+Route::post("/register-api","App\Http\Controllers\API\PassportController@register");
 ```
 And run this command, always run it whenver you add new route
 ```
- php artisan route:cache
+php artisan route:cache
 ```

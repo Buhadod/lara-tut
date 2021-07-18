@@ -7,57 +7,59 @@ php artisan make:model
 ```
 php artisan make:model Item -crmsf
 ```
-- cr : resource controller
-- m  : model
-- s  : seeder 
-- f  : factory
+- cr : resource controller (Your source code)
+- m  : migration (i.e Database table)
+- s  : seeder   (allow start the factroy, you can skip it)
+- f  : factory  (i.e random data generator)
 
 ## CRUD
-https://dev.to/kingsconsult/how-to-create-a-secure-crud-restful-api-in-laravel-8-and-7-using-laravel-passport-31fh
+See the tutorial for further details (
+https://dev.to/kingsconsult/how-to-create-a-secure-crud-restful-api-in-laravel-8-and-7-using-laravel-passport-31fh)
 
 ## update migration
-
-        Schema::create('items', function (Blueprint $table) {
-            $table->id();
-            $table->string('name', 255);
-            $table->string('description', 500)->nullable();
-            $table->integer('price')->nullable();
-            $table->timestamps();
-        });
-
+Ref: https://laravel.com/docs/8.x/migrations#available-column-types
+```
+Schema::create('items', function (Blueprint $table) {
+    $table->id();
+    $table->string('name', 255);
+    $table->string('description', 500)->nullable();
+    $table->integer('price')->nullable();
+    $table->timestamps();
+});
+```
 ## Update model
+```
+class Item extends Model
+{
+    ....
 
-    class Item extends Model
-    {
-        ....
-
-        protected $fillable = [
-            'name',
-            'description',
-            'price'
-        ];
-
+    protected $fillable = [
+        'name',
+        'description',
+        'price'
+    ];
+```
 ## Update Factroy
 
 Ref: https://github.com/fzaninotto/Faker
-
-    public function definition()
-    {
-        return [
-            'name' => $this->faker->name(),
-            'description' => $this->faker->text(),
-            'price' => $this->faker->numberBetween(1, 100),
-        ];
-    }
-
+```
+public function definition()
+{
+    return [
+        'name' => $this->faker->name(),
+        'description' => $this->faker->text(),
+        'price' => $this->faker->numberBetween(1, 100),
+    ];
+}
+```
 Also, add seeder start to DatabaseSeeder.php
-
-    public function run()
-    {
-        \App\Models\User::factory(10)->create();
-        \App\Models\Item::factory(10)->create();  // <- Create 10 items
-    }
-
+```
+public function run()
+{
+    \App\Models\User::factory(10)->create();
+    \App\Models\Item::factory(10)->create();  // <- Create 10 items
+}
+```
 
 ## Update Controller
 
@@ -180,9 +182,9 @@ class ItemController extends Controller
     }
 
 ## Add route
-
-    Route::resource('items',"App\Http\Controllers\API\ItemController");
-
+```
+Route::resource('items',"App\Http\Controllers\API\ItemController");
+```
 ## Validation rule
 
     https://laravel.com/docs/8.x/validation#available-validation-rules
