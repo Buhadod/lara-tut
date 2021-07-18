@@ -1,7 +1,7 @@
 ## php artisan commands
-php artisan make:controller
-php artisan make:migration
-php artisan make:model
+- php artisan make:controller
+- php artisan make:migration
+- php artisan make:model
 
 ## Create model
 ```
