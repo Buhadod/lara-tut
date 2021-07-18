@@ -22,6 +22,8 @@ Route::post("/login-api","App\Http\Controllers\API\PassportController@login");
 Route::post("/register-api","App\Http\Controllers\API\PassportController@register");
 Route::resource('items',"App\Http\Controllers\API\ItemController");
 
+Route::post('/updateProfile','App\Http\Controllers\API\ProfileController@updateProfile');
+
 Route::middleware(['auth:api'])->group(function () {
     Route::resource('itemsx',"App\Http\Controllers\API\ItemController");
 });
