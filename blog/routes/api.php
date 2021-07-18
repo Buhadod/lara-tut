@@ -27,3 +27,5 @@ Route::post('/updateProfile','App\Http\Controllers\API\ProfileController@updateP
 Route::middleware(['auth:api'])->group(function () {
     Route::resource('itemsx',"App\Http\Controllers\API\ItemController");
 });
+
+Route::resource('products',"App\Http\Controllers\API\ProductController");
