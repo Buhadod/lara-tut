@@ -63,7 +63,8 @@ Also, add seeder start to DatabaseSeeder.php
 ```
 public function run()
 {
-    \App\Models\User::factory(10)->create();
+    \App\Models\User::factory(1)->create(['email'=>'admin@domain.com']); //user with custom email
+    \App\Models\User::factory(10)->create();  //10 users with random info from UserFactory
     \App\Models\Item::factory(10)->create();  // <- Create 10 items
 }
 ```

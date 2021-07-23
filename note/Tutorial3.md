@@ -37,6 +37,7 @@ class User extends Model
     public function profile()
     {
         return $this->hasOne(Profile::class);
+        // or $this->hasOne(Profile::class,'user_id','id');
     }
 }
 ```
@@ -72,6 +73,18 @@ you have to use this syntax:
 ```
 
 There are no much difference between has*** or belongsTo. It is just based on the naming. You can for instance use only hasOne and hasMany without belong to and call it a day.
+
+You can test the relation in the tinker as follow:
+```
+    php artisan tinker
+    
+    User::find(1)           //show you the user info for user id = 1
+    User::find(1)->profile  //show you the user profile
+
+    Profile::find(1)        //show you the profile (profile_id = 1)
+    Profile::find(1)->user  //show you the user info of that profile
+
+```
 
 ## Get the authenticated user
 You may some time one to only update the profile of the login user itself. you can use `auth::user()->id` to obtain the user id and then followed by `where` to access the profile of the logen in user as follow:
