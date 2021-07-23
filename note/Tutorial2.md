@@ -1,7 +1,11 @@
-## php artisan commands
-- php artisan make:controller
-- php artisan make:migration
-- php artisan make:model
+# CRUD
+
+## PHP artisan commands
+- To create a contoller `php artisan make:controller <controller name>`
+- To create a migration file `php artisan make:migration <table name>`
+- To create a model `php artisan make:model <model name>`
+
+
 
 ## Create model
 ```
@@ -11,6 +15,9 @@ php artisan make:model Item -crmsf
 - m  : migration (i.e Database table)
 - s  : seeder   (allow start the factroy, you can skip it)
 - f  : factory  (i.e random data generator)
+
+Note: always keep model singular and Captilise (e.g Item, Product ..etc)
+Avoid as much as possbile reserved names (e.g Class, Model ..etc)
 
 ## CRUD
 See the tutorial for further details (
@@ -71,6 +78,7 @@ use Illuminate\Support\Facades\Validator;
 class ItemController extends Controller
 {
     /**
+     * Display a listing of the resource.
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
