@@ -29,3 +29,22 @@ Route::middleware(['auth:api'])->group(function () {
 });
 
 Route::resource('products',"App\Http\Controllers\API\ProductController");
+
+Route::post("/register-console-api","App\Http\Controllers\ConsoleController@register");
+Route::post("/login-console-api","App\Http\Controllers\ConsoleController@login");
+
+
+Route::post('show-console-api/{id}',"App\Http\Controllers\ConsoleController@show");
+
+Route::group(['middleware' => ['auth:api','role:admin']], function () {
+    
+    
+    Route::get("/test", function(){
+        return "text";
+    });
+
+    Route::get('getUser-console-api',"App\Http\Controllers\ConsoleController@getUser");
+
+   
+
+});
