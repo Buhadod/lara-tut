@@ -164,3 +164,20 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 
 ```
+
+```
+Route::group(['middleware' => ['auth:api','role:admin']], function () {
+    Route::get("/test", function(){
+        return "text";
+    });
+});
+```
+
+```
+Route::get("/test2/{id}","App\Http\Controllers\Test@hello");
+public function hello( $id)
+    {
+        return $id;
+    }
+
+```
