@@ -117,4 +117,39 @@ class ItemController extends Controller
         $item->delete();
         return response(['message' => 'Deleted']);
     }
+
+    public function search($query)
+    {
+        //ref https://freek.dev/1182-searching-models-using-a-where-like-query-in-laravel
+        return Item::query()
+        ->where('name', 'LIKE', "%{$query}%") 
+        ->orWhere('description', 'LIKE', "%{$query}%") 
+        ->get();
+        
+    }
+
+    public function filter($filter,$query)
+    {        
+        $comparison ='=';
+
+        switch($filter){
+            case 1:  $comparison = '>'; break;
+            case 2:  $comparison = '<'; break;
+        }
+
+        // ->where('price','>',100) 
+        return Item::query()
+        ->where('price', $comparison, $query)
+        ->get();
+
+    }
+
+    public function paginate()
+    {        
+        $items = Item::paginate(20);
+        //simplePaginate 
+        //cursorPaginate 
+        return response([ 'items' => $items, 'message' => 'Retrieved successfully'], 200);
+
+    }
 }

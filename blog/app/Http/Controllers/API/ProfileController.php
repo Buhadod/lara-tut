@@ -10,7 +10,8 @@ class ProfileController extends Controller
 {
     public function updateProfile(Request $request)
     {
-        $input =$request->only('profile_picture','name'); 
+		
+        $input =$request->only('picture','bio'); 
         
 
         //different validation for file
@@ -19,8 +20,8 @@ class ProfileController extends Controller
 
        
         $validator = Validator::make($input, [
-            'profile_picture' => 'required|image|max:2048|',
-            'name' => 'required|max:255',
+            'picture' => 'required|image|max:2048|',
+            'bio' => 'required|max:255',
         ]);
 
         if ($validator->fails()) {
@@ -28,10 +29,10 @@ class ProfileController extends Controller
         }
         
         //Get file path
-        $file_path = $input['profile_picture']->path();
+        $file_path = $input['picture']->path();
 
         //Get Extension
-        $extension = $input['profile_picture']->extension();
+        $extension = $input['picture']->extension();
 
         //Create new file name
         $newfilename = uniqid().".". $extension;

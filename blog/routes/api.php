@@ -20,12 +20,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post("/login-api","App\Http\Controllers\API\PassportController@login");
 Route::post("/register-api","App\Http\Controllers\API\PassportController@register");
-Route::resource('items',"App\Http\Controllers\API\ItemController");
+
 
 Route::post('/updateProfile','App\Http\Controllers\API\ProfileController@updateProfile');
 
+Route::get('items/search/{query}',"App\Http\Controllers\API\ItemController@search");
+Route::get('items/filter/{filter}/{query}',"App\Http\Controllers\API\ItemController@filter");
+Route::get('items/paginate',"App\Http\Controllers\API\ItemController@paginate");
+
+Route::resource('items',"App\Http\Controllers\API\ItemController");
+
 Route::middleware(['auth:api'])->group(function () {
-    Route::resource('itemsx',"App\Http\Controllers\API\ItemController");
+    Route::resource('item-auth',"App\Http\Controllers\API\ItemController");
 });
 
 Route::resource('products',"App\Http\Controllers\API\ProductController");

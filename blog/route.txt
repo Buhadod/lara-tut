@@ -1,65 +1,68 @@
 +--------+-----------+-----------------------------------------+-----------------------------------+---------------------------------------------------------------------------+--------------+
 | Domain | Method    | URI                                     | Name                              | Action                                                                    | Middleware   |
 +--------+-----------+-----------------------------------------+-----------------------------------+---------------------------------------------------------------------------+--------------+
-|        | GET|HEAD  | /                                       | generated::fs3fDqNkmX8KTKoE       | Closure                                                                   | web          |
-|        | GET|HEAD  | api/getUser-console-api                 | generated::0ncb91S5jhktRYE0       | App\Http\Controllers\ConsoleController@getUser                            | api          |
+|        | GET|HEAD  | /                                       | generated::90LKvBh4tPEdE6A8       | Closure                                                                   | web          |
+|        | GET|HEAD  | api/getUser-console-api                 | generated::I2TtKZTSn5QZN74v       | App\Http\Controllers\ConsoleController@getUser                            | api          |
 |        |           |                                         |                                   |                                                                           | auth:api     |
 |        |           |                                         |                                   |                                                                           | role:admin   |
-|        | GET|HEAD  | api/items                               | items.index                       | App\Http\Controllers\API\ItemController@index                             | api          |
+|        | POST      | api/item-auth                           | item-auth.store                   | App\Http\Controllers\API\ItemController@store                             | api          |
+|        |           |                                         |                                   |                                                                           | auth:api     |
+|        | GET|HEAD  | api/item-auth                           | item-auth.index                   | App\Http\Controllers\API\ItemController@index                             | api          |
+|        |           |                                         |                                   |                                                                           | auth:api     |
+|        | GET|HEAD  | api/item-auth/create                    | item-auth.create                  | App\Http\Controllers\API\ItemController@create                            | api          |
+|        |           |                                         |                                   |                                                                           | auth:api     |
+|        | GET|HEAD  | api/item-auth/{item_auth}               | item-auth.show                    | App\Http\Controllers\API\ItemController@show                              | api          |
+|        |           |                                         |                                   |                                                                           | auth:api     |
+|        | DELETE    | api/item-auth/{item_auth}               | item-auth.destroy                 | App\Http\Controllers\API\ItemController@destroy                           | api          |
+|        |           |                                         |                                   |                                                                           | auth:api     |
+|        | PUT|PATCH | api/item-auth/{item_auth}               | item-auth.update                  | App\Http\Controllers\API\ItemController@update                            | api          |
+|        |           |                                         |                                   |                                                                           | auth:api     |
+|        | GET|HEAD  | api/item-auth/{item_auth}/edit          | item-auth.edit                    | App\Http\Controllers\API\ItemController@edit                              | api          |
+|        |           |                                         |                                   |                                                                           | auth:api     |
 |        | POST      | api/items                               | items.store                       | App\Http\Controllers\API\ItemController@store                             | api          |
+|        | GET|HEAD  | api/items                               | items.index                       | App\Http\Controllers\API\ItemController@index                             | api          |
 |        | GET|HEAD  | api/items/create                        | items.create                      | App\Http\Controllers\API\ItemController@create                            | api          |
+|        | GET|HEAD  | api/items/filter/{filter}/{query}       | generated::fJANL3wwiI9odbwv       | App\Http\Controllers\API\ItemController@filter                            | api          |
+|        | GET|HEAD  | api/items/paginate                      | generated::TKdxK3ZtimsQL4ss       | App\Http\Controllers\API\ItemController@paginate                          | api          |
+|        | GET|HEAD  | api/items/search/{query}                | generated::SAZK1D2zJIF3uhjS       | App\Http\Controllers\API\ItemController@search                            | api          |
 |        | DELETE    | api/items/{item}                        | items.destroy                     | App\Http\Controllers\API\ItemController@destroy                           | api          |
-|        | PUT|PATCH | api/items/{item}                        | items.update                      | App\Http\Controllers\API\ItemController@update                            | api          |
 |        | GET|HEAD  | api/items/{item}                        | items.show                        | App\Http\Controllers\API\ItemController@show                              | api          |
+|        | PUT|PATCH | api/items/{item}                        | items.update                      | App\Http\Controllers\API\ItemController@update                            | api          |
 |        | GET|HEAD  | api/items/{item}/edit                   | items.edit                        | App\Http\Controllers\API\ItemController@edit                              | api          |
-|        | POST      | api/itemsx                              | itemsx.store                      | App\Http\Controllers\API\ItemController@store                             | api          |
-|        |           |                                         |                                   |                                                                           | auth:api     |
-|        | GET|HEAD  | api/itemsx                              | itemsx.index                      | App\Http\Controllers\API\ItemController@index                             | api          |
-|        |           |                                         |                                   |                                                                           | auth:api     |
-|        | GET|HEAD  | api/itemsx/create                       | itemsx.create                     | App\Http\Controllers\API\ItemController@create                            | api          |
-|        |           |                                         |                                   |                                                                           | auth:api     |
-|        | DELETE    | api/itemsx/{itemsx}                     | itemsx.destroy                    | App\Http\Controllers\API\ItemController@destroy                           | api          |
-|        |           |                                         |                                   |                                                                           | auth:api     |
-|        | PUT|PATCH | api/itemsx/{itemsx}                     | itemsx.update                     | App\Http\Controllers\API\ItemController@update                            | api          |
-|        |           |                                         |                                   |                                                                           | auth:api     |
-|        | GET|HEAD  | api/itemsx/{itemsx}                     | itemsx.show                       | App\Http\Controllers\API\ItemController@show                              | api          |
-|        |           |                                         |                                   |                                                                           | auth:api     |
-|        | GET|HEAD  | api/itemsx/{itemsx}/edit                | itemsx.edit                       | App\Http\Controllers\API\ItemController@edit                              | api          |
-|        |           |                                         |                                   |                                                                           | auth:api     |
-|        | POST      | api/login-api                           | generated::vz7TnwARfAqnqFuY       | App\Http\Controllers\API\PassportController@login                         | api          |
-|        | POST      | api/login-console-api                   | generated::gbgVrRBgYF4iua00       | App\Http\Controllers\ConsoleController@login                              | api          |
+|        | POST      | api/login-api                           | generated::P1UFiKlHwvURq9xy       | App\Http\Controllers\API\PassportController@login                         | api          |
+|        | POST      | api/login-console-api                   | generated::gWaKzo7T1sqi591Q       | App\Http\Controllers\ConsoleController@login                              | api          |
 |        | GET|HEAD  | api/products                            | products.index                    | App\Http\Controllers\API\ProductController@index                          | api          |
 |        | POST      | api/products                            | products.store                    | App\Http\Controllers\API\ProductController@store                          | api          |
 |        | GET|HEAD  | api/products/create                     | products.create                   | App\Http\Controllers\API\ProductController@create                         | api          |
+|        | DELETE    | api/products/{product}                  | products.destroy                  | App\Http\Controllers\API\ProductController@destroy                        | api          |
 |        | GET|HEAD  | api/products/{product}                  | products.show                     | App\Http\Controllers\API\ProductController@show                           | api          |
 |        | PUT|PATCH | api/products/{product}                  | products.update                   | App\Http\Controllers\API\ProductController@update                         | api          |
-|        | DELETE    | api/products/{product}                  | products.destroy                  | App\Http\Controllers\API\ProductController@destroy                        | api          |
 |        | GET|HEAD  | api/products/{product}/edit             | products.edit                     | App\Http\Controllers\API\ProductController@edit                           | api          |
-|        | POST      | api/register-api                        | generated::1Dp877Htdd5crrP5       | App\Http\Controllers\API\PassportController@register                      | api          |
-|        | POST      | api/register-console-api                | generated::CPC2t36Ljb51UaSC       | App\Http\Controllers\ConsoleController@register                           | api          |
-|        | POST      | api/show-console-api/{id}/{id2}         | generated::byOPEMq9G6Htkwic       | App\Http\Controllers\ConsoleController@show                               | api          |
-|        | GET|HEAD  | api/test                                | generated::Krx3W28MeTliotLT       | Closure                                                                   | api          |
+|        | POST      | api/register-api                        | generated::gOcfntpIRSZ3J7uq       | App\Http\Controllers\API\PassportController@register                      | api          |
+|        | POST      | api/register-console-api                | generated::0wr2PacWAI8Q9jR0       | App\Http\Controllers\ConsoleController@register                           | api          |
+|        | POST      | api/show-console-api/{id}               | generated::9H0b0O8AzWUKsUpD       | App\Http\Controllers\ConsoleController@show                               | api          |
+|        | GET|HEAD  | api/test                                | generated::Yaz9Dx4qjvx103ue       | Closure                                                                   | api          |
 |        |           |                                         |                                   |                                                                           | auth:api     |
 |        |           |                                         |                                   |                                                                           | role:admin   |
-|        | POST      | api/updateProfile                       | generated::CznVmHy7chfmXGcv       | App\Http\Controllers\API\ProfileController@updateProfile                  | api          |
-|        | GET|HEAD  | api/user                                | generated::YU7OdtEbb3mNyOS4       | Closure                                                                   | api          |
+|        | POST      | api/updateProfile                       | generated::9C8u19jI1JDdwfNi       | App\Http\Controllers\API\ProfileController@updateProfile                  | api          |
+|        | GET|HEAD  | api/user                                | generated::0AivWpZKroRIfdBT       | Closure                                                                   | api          |
 |        |           |                                         |                                   |                                                                           | auth:api     |
 |        | GET|HEAD  | confirm-password                        | password.confirm                  | App\Http\Controllers\Auth\ConfirmablePasswordController@show              | web          |
 |        |           |                                         |                                   |                                                                           | auth         |
-|        | POST      | confirm-password                        | generated::OAjMYDyCF3nZt8dL       | App\Http\Controllers\Auth\ConfirmablePasswordController@store             | web          |
+|        | POST      | confirm-password                        | generated::EYeOdcsZvBRqCU3F       | App\Http\Controllers\Auth\ConfirmablePasswordController@store             | web          |
 |        |           |                                         |                                   |                                                                           | auth         |
 |        | GET|HEAD  | dashboard                               | dashboard                         | Closure                                                                   | web          |
 |        |           |                                         |                                   |                                                                           | auth         |
 |        | POST      | email/verification-notification         | verification.send                 | App\Http\Controllers\Auth\EmailVerificationNotificationController@store   | web          |
 |        |           |                                         |                                   |                                                                           | auth         |
 |        |           |                                         |                                   |                                                                           | throttle:6,1 |
-|        | POST      | forgot-password                         | password.email                    | App\Http\Controllers\Auth\PasswordResetLinkController@store               | web          |
-|        |           |                                         |                                   |                                                                           | guest        |
 |        | GET|HEAD  | forgot-password                         | password.request                  | App\Http\Controllers\Auth\PasswordResetLinkController@create              | web          |
 |        |           |                                         |                                   |                                                                           | guest        |
-|        | GET|HEAD  | login                                   | login                             | App\Http\Controllers\Auth\AuthenticatedSessionController@create           | web          |
+|        | POST      | forgot-password                         | password.email                    | App\Http\Controllers\Auth\PasswordResetLinkController@store               | web          |
 |        |           |                                         |                                   |                                                                           | guest        |
-|        | POST      | login                                   | generated::mhUQPhSwQk1Uegm6       | App\Http\Controllers\Auth\AuthenticatedSessionController@store            | web          |
+|        | POST      | login                                   | generated::31BySkjzAadxJSh2       | App\Http\Controllers\Auth\AuthenticatedSessionController@store            | web          |
+|        |           |                                         |                                   |                                                                           | guest        |
+|        | GET|HEAD  | login                                   | login                             | App\Http\Controllers\Auth\AuthenticatedSessionController@create           | web          |
 |        |           |                                         |                                   |                                                                           | guest        |
 |        | POST      | logout                                  | logout                            | App\Http\Controllers\Auth\AuthenticatedSessionController@destroy          | web          |
 |        |           |                                         |                                   |                                                                           | auth         |
@@ -92,7 +95,7 @@
 |        |           |                                         |                                   |                                                                           | auth         |
 |        | DELETE    | oauth/tokens/{token_id}                 | passport.tokens.destroy           | Laravel\Passport\Http\Controllers\AuthorizedAccessTokenController@destroy | web          |
 |        |           |                                         |                                   |                                                                           | auth         |
-|        | POST      | register                                | generated::PGasi4Kpys6o7L53       | App\Http\Controllers\Auth\RegisteredUserController@store                  | web          |
+|        | POST      | register                                | generated::cXe9uXCYXEpypZzr       | App\Http\Controllers\Auth\RegisteredUserController@store                  | web          |
 |        |           |                                         |                                   |                                                                           | guest        |
 |        | GET|HEAD  | register                                | register                          | App\Http\Controllers\Auth\RegisteredUserController@create                 | web          |
 |        |           |                                         |                                   |                                                                           | guest        |
